@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import { AppDataSource } from './data-source';
 import presentesRouter from './routes/presentes';
 import * as dotenv from 'dotenv';
+import healthRouter from "./routes/health";
 const app = express();
 dotenv.config();
 
@@ -11,6 +12,7 @@ app.use(cors()); // libera CORS para tudo
 app.use(bodyParser.json());
 
 app.use('/presentes', presentesRouter);
+app.use('/health', healthRouter);
 
 AppDataSource.initialize()
   .then(() => {
